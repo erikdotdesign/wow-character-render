@@ -1,0 +1,20 @@
+{
+  "name": "wow-character-render",
+  "id": "1498668595328973446",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "ui": "dist/ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": [
+      "https://worldofwarcraft.blizzard.com",
+      "https://render.worldofwarcraft.com"
+    ],
+    "devAllowedDomains": [
+      "http://localhost:3000"
+    ]
+  }
+}
