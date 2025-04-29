@@ -2,15 +2,15 @@ import * as React from "react";
 import { useState } from "react";
 
 const App = () => {
-  const [region, setRegion] = useState("us");
-  const [realm, setRealm] = useState("aegwynn");
-  const [character, setCharacter] = useState("leeroy");
+  const [region, setRegion] = useState("US");
+  const [realm, setRealm] = useState("Aegwynn");
+  const [character, setCharacter] = useState("Leeroy");
 
   const fetchCharacterRender = async () => {
     const query = new URLSearchParams({
-      region,
-      realm,
-      character,
+      region: region.toLowerCase(),
+      realm: realm.toLowerCase().replace(/\s+/g, '-'),
+      character: character.toLowerCase(),
     });
 
     const proxyUrl = `http://localhost:3000/character-render?${query.toString()}`;
