@@ -6,6 +6,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "build:watch": "webpack --mode=development --watch",
+    "dev:server": "nodemon index.js",
+    "dev": "concurrently \"npm run dev:server\" \"npm run build:watch\"",
     "prettier:format": "prettier --write '**/*.{js,jsx,ts,tsx,css,json}' "
   },
   "dependencies": {
@@ -21,10 +23,12 @@
     "@figma/plugin-typings": "^1.50.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "concurrently": "^9.1.2",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "nodemon": "^3.1.10",
     "prettier": "^2.7.1",
     "react-dev-utils": "^12.0.1",
     "style-loader": "^3.3.1",
