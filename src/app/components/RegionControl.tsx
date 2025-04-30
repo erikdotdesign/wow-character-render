@@ -1,4 +1,5 @@
 import * as React from "react";
+import ExpandIcon from '../assets/expand.svg';
 
 interface RegionInputProps {
   region: Region
@@ -50,6 +51,9 @@ const RegionControl = ({ region, setRegion }: RegionInputProps) => {
           ))
         }
       </select>
+      <div className="c-control__icon">
+        <img src={ExpandIcon} />
+      </div>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import realms from "../assets/realms.json";
+import ExpandIcon from '../assets/expand.svg';
 
 interface RealmInputProps {
   realm: string,
@@ -45,6 +46,9 @@ const RealmControl = ({ realm, region, setRealm }: RealmInputProps) => {
           ))
         }
       </select>
+      <div className="c-control__icon">
+        <img src={ExpandIcon} />
+      </div>
     </div>
   )
 }
