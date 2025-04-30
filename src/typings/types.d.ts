@@ -1,0 +1,1 @@
+type Region = "us" | "eu" | "kr" | "tw";

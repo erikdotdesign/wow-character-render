@@ -16,39 +16,6 @@ let browser; // Global browser instance
   });
 })();
 
-app.get('/realms', async (req, res) => {
-  const { region = 'us' } = req.query;
-  const baseUrl = 'https://worldofwarcraft.blizzard.com/en-us/game/status/';
-
-  try {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-  
-    const url = `${baseUrl}${region}`;
-    console.log(`Scraping ${region.toUpperCase()} from ${url}`);
-    await page.goto(url, { waitUntil: 'networkidle0' });
-
-    // Wait for realms table
-    await page.waitForSelector('div.RealmsTable');
-
-    // grab the realm names
-    const realmNames = await page.$$eval(
-      'div.RealmsTable div.SortTable div.SortTable-body div.SortTable-row div.SortTable-col:nth-child(2)',
-      elements =>
-        elements
-          .map(el => el.textContent.trim())
-          .filter(name => name.length > 0)
-    );
-  
-    await browser.close();
-
-    res.json(realmNames);
-  } catch (error) {
-    console.error('Failed to scrape realm names:', error);
-    res.status(500).json({ error: 'Failed to retrieve realm list' });
-  }
-});
-
 app.get('/character-render', async (req, res) => {
   const { region, realm, character } = req.query;
 
@@ -119,3 +86,36 @@ process.on('SIGINT', async () => {
   }
   process.exit();
 });
+
+// app.get('/realms', async (req, res) => {
+//   const { region = 'us' } = req.query;
+//   const baseUrl = 'https://worldofwarcraft.blizzard.com/en-us/game/status/';
+
+//   try {
+//     const browser = await puppeteer.launch({ headless: true });
+//     const page = await browser.newPage();
+  
+//     const url = `${baseUrl}${region}`;
+//     console.log(`Scraping ${region.toUpperCase()} from ${url}`);
+//     await page.goto(url, { waitUntil: 'networkidle0' });
+
+//     // Wait for realms table
+//     await page.waitForSelector('div.RealmsTable');
+
+//     // grab the realm names
+//     const realmNames = await page.$$eval(
+//       'div.RealmsTable div.SortTable div.SortTable-body div.SortTable-row div.SortTable-col:nth-child(2)',
+//       elements =>
+//         elements
+//           .map(el => el.textContent.trim())
+//           .filter(name => name.length > 0)
+//     );
+  
+//     await browser.close();
+
+//     res.json(realmNames);
+//   } catch (error) {
+//     console.error('Failed to scrape realm names:', error);
+//     res.status(500).json({ error: 'Failed to retrieve realm list' });
+//   }
+// });
