@@ -15,7 +15,7 @@ const SubmitButton = ({ region, realm, character }: SubmitButtonProps) => {
       character: character.toLowerCase(),
     });
 
-    const proxyUrl = `http://localhost:3000/character-render?${query.toString()}`;
+    const proxyUrl = `http://localhost:3000/character-armory?${query.toString()}`;
 
     try {
       const response = await fetch(proxyUrl);

@@ -16,7 +16,7 @@ let browser; // Global browser instance
   });
 })();
 
-app.get('/character-render', async (req, res) => {
+app.get('/character-armory', async (req, res) => {
   const { region, realm, character } = req.query;
 
   if (!region || !realm || !character) {
