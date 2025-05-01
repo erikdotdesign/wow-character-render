@@ -19,10 +19,15 @@ const SubmitButton = ({ region, realm, character }: SubmitButtonProps) => {
 
     try {
       const response = await fetch(proxyUrl);
-      const data = await response.json();
+      const render = await response.json();
 
-      if (data.imageUrl) {
-        parent.postMessage({ pluginMessage: { type: "insert-image", imageUrl: data.imageUrl } }, "*");
+      if (render.characterUrl) {
+        parent.postMessage({ 
+          pluginMessage: { 
+            type: "add-render", 
+            render
+          } 
+        }, "*");
       } else {
         alert("Render not found!");
       }
@@ -33,7 +38,10 @@ const SubmitButton = ({ region, realm, character }: SubmitButtonProps) => {
   };
 
   return (
-    <button className="c-button" onClick={fetchCharacterRender}>
+    <button 
+      className="c-button" 
+      onClick={fetchCharacterRender}
+      disabled={character.length === 0}>
       Add Render
     </button>
   );

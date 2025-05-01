@@ -23,7 +23,7 @@ app.get('/character-render', async (req, res) => {
     return res.status(400).json({ error: 'Missing required query parameters' });
   }
 
-  const characterUrl = `https://worldofwarcraft.blizzard.com/en-us/character/${region}/${realm.toLowerCase()}/${character.toLowerCase()}`;
+  const characterArmoryUrl = `https://worldofwarcraft.blizzard.com/en-us/character/${region}/${realm.toLowerCase()}/${character.toLowerCase()}`;
 
   try {
     const page = await browser.newPage();
@@ -38,7 +38,7 @@ app.get('/character-render', async (req, res) => {
       }
     });
 
-    await page.goto(characterUrl, { waitUntil: 'domcontentloaded' });
+    await page.goto(characterArmoryUrl, { waitUntil: 'domcontentloaded' });
 
     const scriptText = await page.$eval('#character-profile-mount-initial-state', (script) => script.textContent);
 
@@ -59,15 +59,19 @@ app.get('/character-render', async (req, res) => {
 
     const characterData = JSON.parse(jsonClean);
 
-    const renderRawUrl = characterData?.character?.renderRaw?.url;
+    const render = {
+      characterUrl: characterData?.character?.renderRaw?.url,
+      backgroundUrl: characterData?.character?.render?.background?.url,
+      shadowUrl: characterData?.character?.render?.shadow?.url
+    }
 
     await page.close();
 
-    if (!renderRawUrl) {
+    if (!render.characterUrl) {
       return res.status(404).json({ error: 'renderRaw URL not found in character data' });
     }
 
-    return res.json({ imageUrl: renderRawUrl });
+    return res.json(render);
 
   } catch (error) {
     console.error(error.message);
