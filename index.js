@@ -23,7 +23,7 @@ app.get('/character-armory', async (req, res) => {
     return res.status(400).json({ error: 'Missing required query parameters' });
   }
 
-  const characterArmoryUrl = `https://worldofwarcraft.blizzard.com/en-us/character/${region}/${realm.toLowerCase()}/${character.toLowerCase()}`;
+  const characterArmoryUrl = `https://worldofwarcraft.blizzard.com/en-us/character/${region}/${realm}/${character}`;
 
   try {
     const page = await browser.newPage();
