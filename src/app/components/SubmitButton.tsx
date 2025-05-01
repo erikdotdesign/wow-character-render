@@ -41,7 +41,7 @@ const SubmitButton = ({ region, realm, character }: SubmitButtonProps) => {
     <button 
       className="c-button" 
       onClick={fetchCharacterRender}
-      disabled={character.length === 0}>
+      disabled={character.length < 2 || character.length > 12}>
       Add Render
     </button>
   );
