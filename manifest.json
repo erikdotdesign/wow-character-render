@@ -13,7 +13,8 @@
       "https://worldofwarcraft.blizzard.com",
       "https://render.worldofwarcraft.com",
       "https://fonts.googleapis.com",
-      "https://fonts.gstatic.com"
+      "https://fonts.gstatic.com",
+      "https://ipapi.co"
     ],
     "devAllowedDomains": [
       "http://localhost:3000"
