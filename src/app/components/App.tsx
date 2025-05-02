@@ -9,7 +9,7 @@ import WowLogo from "../assets/wow-logo.svg";
 const App = () => {
   const [region, setRegion] = useState<Region>("us");
   const [realm, setRealm] = useState<string>("aegwynn");
-  const [character, setCharacter] = useState<string>('');
+  const [character, setCharacter] = useState<string>("");
 
   const fetchIpLocation = async () => {
     const ipLocatorUrl = `https://ipapi.co/json`;
