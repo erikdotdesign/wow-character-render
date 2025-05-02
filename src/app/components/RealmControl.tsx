@@ -11,16 +11,20 @@ interface RealmInputProps {
 
 const RealmControl = ({ realm, region, setRealm }: RealmInputProps) => {
 
-  const handleRealmChange = (selectedRealm) => {
-    setRealm(selectedRealm.target.value);
+  const handleRealmChange = (e) => {
+    setRealm(e.target.value);
   }
 
-  const sanitizeRealm = (realmName) => {
+  const sanitizeRealmName = (realmName) => {
     return realmName.replace(/\s+/g, '-').replace(/'/g, "").toLowerCase();
   }
 
+  const handleRegionChange = () {
+    setRealm(sanitizeRealmName(realms[region][0]));
+  }
+
   useEffect(() => {
-    setRealm(sanitizeRealm(realms[region][0]));
+    handleRegionChange();
   }, [region]);
 
   return (
@@ -39,8 +43,8 @@ const RealmControl = ({ realm, region, setRealm }: RealmInputProps) => {
         {
           realms[region].map((realmOption) => (
             <option 
-              key={sanitizeRealm(realmOption)}
-              value={sanitizeRealm(realmOption)}>
+              key={sanitizeRealmName(realmOption)}
+              value={sanitizeRealmName(realmOption)}>
               {realmOption}
             </option>
           ))

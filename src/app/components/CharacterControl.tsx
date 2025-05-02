@@ -7,8 +7,8 @@ interface CharacterControlProps {
 
 const CharacterControl = ({ character, setCharacter }: CharacterControlProps) => {
 
-  const handleCharacterChange = (selectedCharacter) => {
-    setCharacter(selectedCharacter.target.value);
+  const handleCharacterChange = (e) => {
+    setCharacter(e.target.value);
   }
 
   return (

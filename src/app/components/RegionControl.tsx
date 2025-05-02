@@ -24,8 +24,8 @@ const RegionControl = ({ region, setRegion }: RegionInputProps) => {
     label: "TW"
   }];
 
-  const handleRegionChange = (selectedRegion) => {
-    setRegion(selectedRegion.target.value);
+  const handleRegionChange = (e) => {
+    setRegion(e.target.value);
   }
 
   return (
