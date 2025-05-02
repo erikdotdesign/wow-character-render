@@ -29,6 +29,7 @@
   border: none
   width: 100%
   height: 48px
+  border-radius: 8px
   transition: 0.15s ease
 
   &:hover
@@ -45,6 +46,10 @@
 
   &::placeholder
     color: rgba(255,255,255,0.32)
+
+  &:disabled
+    opacity: 0.5
+    cursor: not-allowed
 
 .c-control__icon
   position: absolute

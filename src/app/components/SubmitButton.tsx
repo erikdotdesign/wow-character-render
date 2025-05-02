@@ -1,12 +1,21 @@
 import * as React from "react";
+import Spinner from "./Spinner";
 
 interface SubmitButtonProps {
   region: Region,
   realm: string,
-  character: string
+  character: string,
+  loading: boolean,
+  setLoading: (loading: boolean) => void
 }
 
-const SubmitButton = ({ region, realm, character }: SubmitButtonProps) => {
+const SubmitButton = ({ 
+  region, 
+  realm, 
+  character, 
+  loading, 
+  setLoading 
+}: SubmitButtonProps) => {
 
   const fetchCharacterRender = async () => {
     const query = new URLSearchParams({
@@ -37,12 +46,22 @@ const SubmitButton = ({ region, realm, character }: SubmitButtonProps) => {
     }
   };
 
+  const handleSubmit = async () => {
+    setLoading(true);
+    await fetchCharacterRender();
+    setLoading(false);
+  }
+
   return (
     <button 
-      className="c-button" 
-      onClick={fetchCharacterRender}
-      disabled={character.length < 2 || character.length > 12}>
-      Add Render
+      className={`c-button ${loading ? 'c-button--loading' : ''}`}
+      onClick={handleSubmit}
+      disabled={loading || character.length < 2 || character.length > 12}>
+      {
+        loading
+        ? <Spinner />
+        : <span>Add Render</span>
+      }
     </button>
   );
 }

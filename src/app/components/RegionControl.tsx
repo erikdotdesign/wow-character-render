@@ -2,11 +2,12 @@ import * as React from "react";
 import ExpandIcon from '../assets/expand.svg';
 
 interface RegionInputProps {
-  region: Region
+  region: Region,
+  loading: boolean,
   setRegion: (region: Region) => void
 }
 
-const RegionControl = ({ region, setRegion }: RegionInputProps) => {
+const RegionControl = ({ region, loading, setRegion }: RegionInputProps) => {
   const regions: {
     value: Region,
     label: string
@@ -39,6 +40,7 @@ const RegionControl = ({ region, setRegion }: RegionInputProps) => {
         className="c-control__field" 
         name="region" 
         id="region-select"
+        disabled={loading}
         onChange={handleRegionChange}
         value={region}>
         {

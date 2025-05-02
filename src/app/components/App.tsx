@@ -10,6 +10,7 @@ const App = () => {
   const [region, setRegion] = useState<Region>("us");
   const [realm, setRealm] = useState<string>("aegwynn");
   const [character, setCharacter] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchIpLocation = async () => {
     const ipLocatorUrl = `https://ipapi.co/json`;
@@ -55,18 +56,23 @@ const App = () => {
       </div>
       <RegionControl 
         region={region}
-        setRegion={setRegion} />
+        setRegion={setRegion}
+        loading={loading} />
       <RealmControl 
         realm={realm}
         setRealm={setRealm}
-        region={region} />
+        region={region}
+        loading={loading} />
       <CharacterControl
         character={character}
-        setCharacter={setCharacter} />
+        setCharacter={setCharacter}
+        loading={loading} />
       <SubmitButton
         region={region}
         realm={realm}
-        character={character} />
+        character={character}
+        loading={loading}
+        setLoading={setLoading} />
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import * as React from "react";
 
 interface CharacterControlProps {
-  character: string
+  character: string,
+  loading: boolean,
   setCharacter: (character: string) => void
 }
 
-const CharacterControl = ({ character, setCharacter }: CharacterControlProps) => {
+const CharacterControl = ({ character, loading, setCharacter }: CharacterControlProps) => {
 
   const handleCharacterChange = (e) => {
     setCharacter(e.target.value);
@@ -24,6 +25,7 @@ const CharacterControl = ({ character, setCharacter }: CharacterControlProps) =>
         id="character-select"
         onChange={handleCharacterChange}
         value={character}
+        disabled={loading}
         placeholder="Character Name">
       </input>
     </div>

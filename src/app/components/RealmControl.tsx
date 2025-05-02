@@ -6,10 +6,11 @@ import ExpandIcon from '../assets/expand.svg';
 interface RealmInputProps {
   realm: string,
   region: Region,
+  loading: boolean,
   setRealm: (realm: string) => void,
 }
 
-const RealmControl = ({ realm, region, setRealm }: RealmInputProps) => {
+const RealmControl = ({ realm, region, loading, setRealm }: RealmInputProps) => {
 
   const handleRealmChange = (e) => {
     setRealm(e.target.value);
@@ -38,6 +39,7 @@ const RealmControl = ({ realm, region, setRealm }: RealmInputProps) => {
         className="c-control__field" 
         name="realm" 
         id="realm-select"
+        disabled={loading}
         onChange={handleRealmChange}
         value={realm}>
         {
