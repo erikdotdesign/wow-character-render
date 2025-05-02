@@ -19,7 +19,7 @@ const RealmControl = ({ realm, region, setRealm }: RealmInputProps) => {
     return realmName.replace(/\s+/g, '-').replace(/'/g, "").toLowerCase();
   }
 
-  const handleRegionChange = () {
+  const handleRegionChange = () => {
     setRealm(sanitizeRealmName(realms[region][0]));
   }
 
