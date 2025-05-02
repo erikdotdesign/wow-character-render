@@ -1,0 +1,54 @@
+.c-spinner
+  position: relative
+  width: 32px
+  height: 32px
+  top: -2px
+  
+  .c-spinner__circle,
+  &::before,
+  &::after
+    content: ""
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    perspective: 600px
+    border-top-width: 4px
+    border-left-width: 2px
+    border-top-color: #fff
+    border-left-color: #fff
+    border-top-style: solid
+    border-left-style: solid
+    border-radius: 32px
+    width: 32px
+    height: 32px
+    animation-duration: $animation-duration
+    animation-timing-function: linear
+    animation-iteration-count: infinite
+  
+  .c-spinner__circle
+    animation-name: rotation1
+  
+  &::before
+    animation-name: rotation2
+  
+  &::after
+    animation-name: rotation3
+
+@keyframes rotation1
+  0%
+    transform: rotateX(65deg) rotateZ(45deg)
+  100%
+    transform: rotateX(65deg) rotateZ(405deg)
+
+@keyframes rotation2
+  0%
+    transform: rotateX(-45deg) rotateY(45deg) rotateZ(180deg)
+  100%
+    transform: rotateX(-45deg) rotateY(45deg) rotateZ(540deg)
+
+@keyframes rotation3
+  0%
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(270deg)
+  100%
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(630deg)
