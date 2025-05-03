@@ -1,7 +1,7 @@
 {
   "name": "wow-character-render",
   "version": "1.0.0",
-  "description": "Add World of Warcraft character render to document.",
+  "description": "Add World of Warcraft character renders to your document.",
   "license": "ISC",
   "scripts": {
     "build": "webpack --mode=production",
