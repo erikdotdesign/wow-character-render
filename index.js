@@ -72,22 +72,25 @@ app.get('/character-armory', async (req, res) => {
     const jsonPart = scriptText.slice(prefix.length).trim();
     const jsonClean = jsonPart.endsWith(';') ? jsonPart.slice(0, -1) : jsonPart;
 
-    const characterData = JSON.parse(jsonClean);
+    const characterInitialState = JSON.parse(jsonClean);
 
     // pull desired data from initial state
-    const render = {
-      characterUrl: characterData?.character?.renderRaw?.url,
-      backgroundUrl: characterData?.character?.render?.background?.url,
-      shadowUrl: characterData?.character?.render?.shadow?.url
+    const characterData = {
+      name: characterInitialState?.character?.name,
+      render: {
+        characterUrl: characterInitialState?.character?.renderRaw?.url,
+        backgroundUrl: characterInitialState?.character?.render?.background?.url,
+        shadowUrl: characterInitialState?.character?.render?.shadow?.url
+      }
     }
 
     await page.close();
 
-    if (!render.characterUrl) {
+    if (!characterData.name) {
       return res.status(404).json({ error: 'renderRaw URL not found in character data' });
     }
 
-    return res.json(render);
+    return res.json(characterData);
 
   } catch (error) {
     console.error(error.message);

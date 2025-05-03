@@ -17,7 +17,7 @@ const SubmitButton = ({
   setLoading 
 }: SubmitButtonProps) => {
 
-  const fetchCharacterRender = async () => {
+  const fetchCharacterData = async () => {
     const query = new URLSearchParams({
       region,
       realm,
@@ -28,13 +28,13 @@ const SubmitButton = ({
 
     try {
       const response = await fetch(proxyUrl);
-      const render = await response.json();
+      const characterData = await response.json();
 
-      if (render.characterUrl) {
+      if (characterData.name) {
         parent.postMessage({ 
           pluginMessage: { 
             type: "add-render", 
-            render
+            characterData
           } 
         }, "*");
       } else {
@@ -48,7 +48,7 @@ const SubmitButton = ({
 
   const handleSubmit = async () => {
     setLoading(true);
-    await fetchCharacterRender();
+    await fetchCharacterData();
     setLoading(false);
   }
 

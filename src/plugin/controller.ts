@@ -2,7 +2,8 @@ figma.showUI(__html__, { width: 300, height: 528 });
 
 figma.ui.onmessage = async (msg) => {
   if (msg.type === "add-render") {
-    const { backgroundUrl, shadowUrl, characterUrl } = msg.render;
+    const { name, render } = msg.characterData;
+    const { backgroundUrl, shadowUrl, characterUrl } = render;
 
     try {
       // render background
@@ -67,7 +68,7 @@ figma.ui.onmessage = async (msg) => {
 
       // group render images
       const renderGroup = figma.group([backgroundRect, shadowRect, characterRect], figma.currentPage);
-      renderGroup.name = "Wow Render";
+      renderGroup.name = `${name} Render`;
 
       // Insert group
       figma.currentPage.appendChild(renderGroup);
