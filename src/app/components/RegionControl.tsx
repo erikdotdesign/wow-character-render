@@ -10,7 +10,7 @@ interface RegionInputProps {
 const RegionControl = ({ region, loading, setRegion }: RegionInputProps) => {
   const regions: {
     value: Region,
-    label: string
+    label: RegionDisplay
   }[] = [{
     value: "us",
     label: "US"

@@ -8,7 +8,7 @@ import WowLogo from "../assets/wow-logo.svg";
 
 const App = () => {
   const [region, setRegion] = useState<Region>("us");
-  const [realm, setRealm] = useState<string>("aegwynn");
+  const [realm, setRealm] = useState<string>("");
   const [character, setCharacter] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
