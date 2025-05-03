@@ -38,7 +38,7 @@ def scrape_realms_by_region():
 
     # Save to file
     try:
-        with open("realms.json", "w", encoding="utf-8") as f:
+        with open("src/app/assets/realms.json", "w", encoding="utf-8") as f:
             json.dump(all_realms, f, indent=2)
         print("\n✅ Realms saved to realms.json")
     except Exception as e:
