@@ -92,8 +92,6 @@ app.get('/character-armory', async (req, res) => {
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({ error: 'Failed to fetch character render' });
-  } finally {
-    if (page) await page.close();
   }
 });
 
