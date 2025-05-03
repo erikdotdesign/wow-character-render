@@ -1,0 +1,14 @@
+@mixin absolute-full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@mixin content-block {
+  @include absolute-full;
+  content: '';
+  width: 100%;
+  display: block;
+}
