@@ -54,7 +54,7 @@ const SubmitButton = ({
 
   return (
     <button 
-      className={`c-button ${loading ? 'c-button--loading' : ''}`}
+      className="c-button"
       onClick={handleSubmit}
       disabled={loading || character.length < 2 || character.length > 12}>
       {
